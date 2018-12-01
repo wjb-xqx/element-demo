@@ -35,8 +35,18 @@
             <div class="detail-swapper clearfix">
                 <div class="detail-main">
                    <h1 class="d_name">{{seller.name}}</h1>
-                   
-
+                   <span class="d_hx">
+                        <h2 class="d_info">优惠信息</h2>
+                   </span>
+                    <ul v-if="seller.supports">
+                        <li v-for="item in seller.supports" class="d_xh">
+                            <span>{{item.description}}</span>
+                        </li>
+                    </ul>
+                     <span class="d_hx">
+                        <h2 class="d_info">商家公告</h2>
+                   </span>
+                   <div class="d_tet">{{seller.bulletin}}</div>
                 </div>
             </div>
             <span class="del" @click="updateil">X</span>
@@ -79,7 +89,7 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
-    background-color:   rgba(7, 17, 27, 0.8);
+    background-color: rgba(7, 17, 27, 0.8);
     overflow :auto;
 }
 .detail-swapper{
@@ -91,12 +101,6 @@ export default {
     min-width: 100%;
     color:#fff;
 }
-.d_name{
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 16px;
-    text-align: center;
-}
 .del{
     display: block;
     color: #fff;
@@ -107,6 +111,45 @@ export default {
    clear: both;
    font-size: 32px;
 
+}
+.d_name{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+}
+.d_hx{
+    margin: 28px 36px 24px;
+    display: block;
+    height: 4px;
+    background-color: rgba(255,255,255,0.3);
+    position: relative;
+}
+.d_info{
+    display: block;
+    width: 80px;
+    height: 20px;
+    text-align: center;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color:rgba(255,255,255,0.3);
+    margin: 0 12px;
+}
+
+.d_tet{
+    padding: 24px;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    line-height: 24px;
+}
+.d_xh{
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    padding: 24px 30px 6px;
 }
     .herder{
         overflow: hidden;

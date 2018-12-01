@@ -6,7 +6,7 @@
        <div class="v-itme"> <router-link to="/ratings" >评价</router-link></div>
        <div class="v-itme"> <router-link to="/seller" >商家</router-link></div>
       </div>
-      <router-view></router-view>
+      <router-view :seller='seller'></router-view>
       <div class="v-footer">footer</div>
   </div>
 </template>
@@ -18,7 +18,19 @@ export default {
   name: 'App',
   components:{
     Vheader
-  }
+  },
+   data(){
+        return{
+            seller:[]
+        }
+    },
+    created(){
+        this.$http.get('/api/seller').then((result) =>{
+            // seller=result.body;
+            var result = result.body.data;
+            this.seller = result
+        })
+    }
 }
 </script>
 
