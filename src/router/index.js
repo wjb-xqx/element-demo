@@ -8,9 +8,9 @@ Vue.use(Router)
 
 export default  new Router({
   routes: [
-    // {  path: '/',redirect: '/seller'},
-    {  path: '/seller',component: seller},
+    {  path: '/',redirect: '/api/goods'},
+    {  path: '/api/seller',component: seller},
     {  path: '/api/goods',component: goods},
-    {  path: '/ratings',component: ratings}
+    {  path: '/api/ratings',component: ratings},
   ]
 })

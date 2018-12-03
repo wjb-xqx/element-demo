@@ -3,8 +3,8 @@
       <Vheader ></vheader>
       <div class="v-nav">
        <div class="v-itme"> <router-link to="/api/goods" class="active">商品</router-link></div>
-       <div class="v-itme"> <router-link to="/ratings" >评价</router-link></div>
-       <div class="v-itme"> <router-link to="/seller" >商家</router-link></div>
+       <div class="v-itme"> <router-link to="/api/ratings" >评价</router-link></div>
+       <div class="v-itme"> <router-link to="/api/seller" >商家</router-link></div>
       </div>
       <router-view :seller='seller'></router-view>
       <div class="v-footer">footer</div>

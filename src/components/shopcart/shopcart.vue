@@ -39,9 +39,6 @@
     </div>  
     
 </template>
- <!-- <transition name="mask">
-             <div class="list-mask" v-show="listShow"></div>
-    </transition> -->
 
 <script>
 import BScroll from "better-scroll";

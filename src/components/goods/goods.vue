@@ -1,5 +1,6 @@
 <template>
    <div class="goods">
+      
        <div class="metu-wrapper" ref="metuWrapper">
            <ul>
                <li v-for="(item,index) in goods" class="metu-item" 
@@ -13,7 +14,7 @@
                <li v-for="item in goods" class="foot-list food-list-hook">
                     <h1 class="title">{{item.name}}</h1>
                     <ul>
-                        <li  @click="selectFood(food,event)"
+                        <li  @click="selectFood(food)"
                          v-for="food in item.foods" class="foot-item" >
                                 <div class="icon">
                                     <img :src="food.icon" alt="">
@@ -40,14 +41,16 @@
        </div>
        <!-- 传递参数   :select-foods="selectFoods" 必须是用-隔开 -->
        <shopCart  :select-foods="selectFoods"  :selet="selectFoods" :delivery-price="seller.deliveryPrice" :minPrice="seller.minPrice"></shopCart>
+         <fooda v-show="foodaShow" :food="selectedFood" name="move" ref="food"></fooda>
    </div>
-  
+    
 </template>
 
 <script>
 import BScroll from "better-scroll";
 import shopCart from '../shopcart/shopcart.vue';
 import cartcontrol from '../cartcontrol/cartcontrol.vue';
+import fooda from '../fooda/fooda.vue';
 
 export default {
     props:['seller'],
@@ -56,12 +59,15 @@ export default {
             goods:[],
             // 每个区间的高度
             listHeight:[],
-            scrollY:0
+            scrollY:0,
+            foodaShow:false,
+            selectedFood:{}
         }
     },
     components: {
       shopCart,
-      cartcontrol
+      cartcontrol,
+      fooda
     },
     computed:{
        currentIndex() {
@@ -97,7 +103,6 @@ export default {
             })
            
         })
-        // console.log(this.selectFoods)
     },
      methods: {
          //点击左侧跳转对应部分
@@ -105,6 +110,11 @@ export default {
         let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
         let el = foodList[index];
         this.foodsScroll.scrollToElement(el, 300);
+      },
+      selectFood(food){
+          this.foodaShow=true;
+            this.selectedFood = food;
+            this.$refs.food.show()
       },
       _initScroll(){
         this.menuScroll = new BScroll(this.$refs.metuWrapper, {
@@ -134,6 +144,13 @@ export default {
 </script>
 
 <style scoped>
+    .move-enter-active, .move-leave-active {
+        transition: all 0.5s linear;
+         transform: translate3d(0, 0, 0);
+    }
+    .move-enter, .move-leave-active {
+        transform: translate3d( 100%,0, 0);
+    }
     .goods{
         display: flex;
         position: absolute;
